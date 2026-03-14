@@ -9,7 +9,14 @@ export default function Leaderboard() {
 
   useEffect(() => {
     api.get('/results/leaderboard')
-      .then(res => setData(res.data))
+      .then(res => {
+        // ✅ Safety check — ensure both arrays exist
+        setData({
+          leaderboard: Array.isArray(res.data?.leaderboard) ? res.data.leaderboard : [],
+          results:     Array.isArray(res.data?.results)     ? res.data.results     : [],
+        });
+      })
+      .catch(() => setData({ leaderboard: [], results: [] }))
       .finally(() => setLoading(false));
   }, []);
 
@@ -34,7 +41,6 @@ export default function Leaderboard() {
         {view === 'colleges' ? (
           data.leaderboard.length > 0 ? (
             <div className="lb-table-wrap">
-              {/* Top 3 podium */}
               {data.leaderboard.length >= 1 && (
                 <div className="podium">
                   {data.leaderboard.slice(0,3).map((item, i) => (
@@ -61,11 +67,7 @@ export default function Leaderboard() {
                 <tbody>
                   {data.leaderboard.map((item, i) => (
                     <tr key={item.college} className={i < 3 ? `top-rank top-${i+1}` : ''}>
-                      <td>
-                        <span className="rank-num">
-                          {i===0?'🥇':i===1?'🥈':i===2?'🥉':`#${i+1}`}
-                        </span>
-                      </td>
+                      <td><span className="rank-num">{i===0?'🥇':i===1?'🥈':i===2?'🥉':`#${i+1}`}</span></td>
                       <td><strong>{item.college}</strong></td>
                       <td className="cell-gold">{item.gold}</td>
                       <td className="cell-silver">{item.silver}</td>

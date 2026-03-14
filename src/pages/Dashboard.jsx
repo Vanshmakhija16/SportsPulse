@@ -11,7 +11,12 @@ export default function Dashboard() {
 
   useEffect(() => {
     api.get('/registrations/my')
-      .then(res => setRegistrations(res.data))
+      .then(res => {
+        // ✅ Safety check — always ensure it's an array
+        const data = Array.isArray(res.data) ? res.data : [];
+        setRegistrations(data);
+      })
+      .catch(() => setRegistrations([]))
       .finally(() => setLoading(false));
   }, []);
 

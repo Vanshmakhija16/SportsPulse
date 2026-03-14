@@ -14,12 +14,18 @@ export default function Events() {
   useEffect(() => {
     setLoading(true);
     const params = {};
-    if (filters.status)                     params.status   = filters.status;
-    if (filters.sport && filters.sport !== 'All') params.sport = filters.sport;
-    if (filters.category)                   params.category = filters.category;
-    if (filters.search)                     params.search   = filters.search;
+    if (filters.status)                           params.status   = filters.status;
+    if (filters.sport && filters.sport !== 'All') params.sport    = filters.sport;
+    if (filters.category)                         params.category = filters.category;
+    if (filters.search)                           params.search   = filters.search;
+
     api.get('/events', { params })
-      .then(res => setEvents(res.data))
+      .then(res => {
+        // ✅ Safety check — always ensure it's an array
+        const data = Array.isArray(res.data) ? res.data : [];
+        setEvents(data);
+      })
+      .catch(() => setEvents([]))
       .finally(() => setLoading(false));
   }, [filters]);
 

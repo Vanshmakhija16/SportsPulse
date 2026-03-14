@@ -10,12 +10,17 @@ const ICONS = {
 };
 
 export default function Home() {
-  const [events, setEvents] = useState([]);
+  const [events,  setEvents]  = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     api.get('/events?status=upcoming')
-      .then(res => setEvents(res.data.slice(0, 3)))
+      .then(res => {
+        // ✅ Safety check — always ensure it's an array
+        const data = Array.isArray(res.data) ? res.data : [];
+        setEvents(data.slice(0, 3));
+      })
+      .catch(() => setEvents([]))
       .finally(() => setLoading(false));
   }, []);
 
@@ -29,7 +34,7 @@ export default function Home() {
   return (
     <div className="home">
 
-      {/* ── Hero ── */}
+      {/* Hero */}
       <section className="hero">
         <div className="hero-grid" />
         <div className="container hero-content fade-in">
@@ -56,7 +61,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Ticker ── */}
+      {/* Ticker */}
       <div className="ticker">
         <div className="ticker-track">
           {tickerSports.map((s, i) => (
@@ -65,7 +70,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── Featured Events ── */}
+      {/* Featured Events */}
       <section className="section container">
         <div className="section-header">
           <div>
@@ -92,7 +97,7 @@ export default function Home() {
         )}
       </section>
 
-      {/* ── Features ── */}
+      {/* Features */}
       <section className="features-section">
         <div className="container">
           <div className="section-tag" style={{ textAlign:'center', marginBottom:8 }}>HOW IT WORKS</div>
@@ -114,7 +119,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+      {/* CTA */}
       <section className="section container">
         <div className="cta-card">
           <h2>Ready to Compete?</h2>
@@ -131,8 +136,8 @@ export default function Home() {
 }
 
 function EventCard({ event }) {
-  const icon = ICONS[event.sport] || '🏅';
-  const date = new Date(event.startDate).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+  const icon   = ICONS[event.sport] || '🏅';
+  const date   = new Date(event.startDate).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
   const total  = event.maxParticipants || 1;
   const filled = event.registrations?.length || 0;
   const left   = total - filled;
