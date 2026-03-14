@@ -1,0 +1,49 @@
+.events-page { padding: 0 0 80px; }
+
+.filter-bar { display: flex; gap: 12px; margin-bottom: 18px; }
+.filter-search { flex: 1; }
+.filter-select { width: 160px; }
+
+.sport-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
+.sport-pill {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 16px; background: var(--dark-card);
+  border: 1px solid var(--dark-border); border-radius: 100px;
+  color: var(--text-secondary);
+  font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
+  letter-spacing: 0.05em; cursor: pointer; transition: all 0.2s;
+}
+.sport-pill:hover { border-color: #00f5ff44; color: var(--text-primary); }
+.sport-pill.active { background: #00f5ff11; border-color: #00f5ff66; color: var(--neon-cyan); }
+
+.event-list { display: flex; flex-direction: column; gap: 10px; }
+
+.event-row {
+  display: flex; align-items: center; gap: 20px;
+  background: var(--dark-card); border: 1px solid var(--dark-border);
+  border-radius: 8px; padding: 20px 24px;
+  text-decoration: none; color: inherit; transition: all 0.2s;
+}
+.event-row:hover { border-color: #00f5ff44; transform: translateX(4px); background: #0d0d1a; }
+
+.er-icon  { font-size: 2.4rem; flex-shrink: 0; }
+.er-info  { flex: 1; min-width: 0; }
+.er-badges { display: flex; gap: 8px; margin-bottom: 6px; }
+.er-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; text-transform: uppercase; margin-bottom: 2px; }
+.er-sport { color: var(--neon-cyan); font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; margin-bottom: 8px; }
+.er-meta  { display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.8rem; color: var(--text-secondary); }
+
+.er-prizes { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
+.prize-tag { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--text-muted); }
+
+.er-arrow {
+  color: var(--neon-cyan); font-size: 1.6rem;
+  opacity: 0; transition: opacity 0.2s; flex-shrink: 0;
+}
+.event-row:hover .er-arrow { opacity: 1; }
+
+@media (max-width: 640px) {
+  .filter-bar { flex-wrap: wrap; }
+  .filter-select { width: 100%; }
+  .er-prizes { display: none; }
+}

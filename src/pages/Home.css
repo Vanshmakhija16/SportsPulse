@@ -1,0 +1,99 @@
+/* ── Hero ── */
+.hero {
+  position: relative; min-height: 90vh;
+  display: flex; align-items: center; overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(#1e1e3a44 1px, transparent 1px),
+    linear-gradient(90deg, #1e1e3a44 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black, transparent);
+}
+.hero-content { position: relative; z-index: 1; max-width: 760px; padding: 80px 0; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 16px; background: #00f5ff11;
+  border: 1px solid #00f5ff33; border-radius: 100px;
+  font-size: 0.82rem; color: var(--neon-cyan);
+  font-family: var(--font-display); letter-spacing: 0.06em;
+  margin-bottom: 24px;
+}
+.hero-title {
+  font-size: clamp(3rem, 8vw, 7rem); font-weight: 900;
+  text-transform: uppercase; letter-spacing: -0.01em;
+  line-height: 0.95; margin-bottom: 24px;
+}
+.hero-sub {
+  font-size: 1.05rem; color: var(--text-secondary);
+  max-width: 500px; margin-bottom: 36px; line-height: 1.7;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+
+.hero-stats { display: flex; align-items: center; gap: 24px; }
+.hstat-num  { font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: var(--neon-cyan); display: block; }
+.hstat small { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.hstat-divider { width: 1px; height: 36px; background: var(--dark-border); }
+
+/* ── Ticker ── */
+.ticker { background: var(--neon-cyan); padding: 11px 0; overflow: hidden; }
+.ticker-track {
+  display: flex; gap: 48px; white-space: nowrap;
+  animation: ticker 28s linear infinite;
+}
+.ticker-track span {
+  font-family: var(--font-display); font-size: 0.88rem;
+  font-weight: 800; letter-spacing: 0.08em;
+  color: #000; text-transform: uppercase;
+}
+
+/* ── Section header ── */
+.section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; text-transform: uppercase; }
+.section-header {
+  display: flex; align-items: flex-end;
+  justify-content: space-between; margin-bottom: 32px;
+}
+
+/* ── Event Cards ── */
+.events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+.event-card {
+  display: block; text-decoration: none; color: inherit;
+  background: var(--dark-card); border: 1px solid var(--dark-border);
+  border-radius: 8px; overflow: hidden; transition: all 0.25s;
+}
+.event-card:hover {
+  border-color: #00f5ff55; transform: translateY(-4px);
+  box-shadow: 0 10px 40px #00f5ff08;
+}
+.ec-top { display: flex; justify-content: space-between; align-items: center; padding: 20px 20px 0; }
+.ec-sport-icon { font-size: 2.4rem; }
+.ec-body { padding: 14px 20px 20px; }
+.ec-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; text-transform: uppercase; margin: 6px 0 4px; }
+.ec-sport { font-size: 0.82rem; color: var(--neon-cyan); font-family: var(--font-display); font-weight: 700; margin-bottom: 12px; }
+.ec-meta { display: flex; flex-direction: column; gap: 4px; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 14px; }
+
+/* ── Features ── */
+.features-section {
+  padding: 80px 0;
+  background: var(--dark-card);
+  border-top: 1px solid var(--dark-border);
+  border-bottom: 1px solid var(--dark-border);
+}
+.feature-card { padding: 28px 20px; text-align: center; }
+.feature-icon { font-size: 2.4rem; margin-bottom: 14px; }
+.feature-card h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+.feature-card p  { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; }
+
+/* ── CTA ── */
+.cta-card {
+  background: linear-gradient(135deg, var(--dark-card), var(--dark-card2));
+  border: 1px solid #00f5ff22; border-radius: 12px;
+  padding: 64px 40px; text-align: center;
+}
+.cta-card h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; text-transform: uppercase; margin-bottom: 12px; }
+.cta-card p  { color: var(--text-secondary); margin-bottom: 32px; font-size: 1.05rem; }
+
+@media (max-width: 900px) { .events-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .events-grid { grid-template-columns: 1fr; } }

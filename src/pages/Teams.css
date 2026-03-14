@@ -1,0 +1,99 @@
+.teams-page { padding: 0 0 80px; }
+.teams-header-actions { display: flex; gap: 12px; }
+
+/* Tabs */
+.team-tabs {
+  display: flex; gap: 4px; margin-bottom: 32px;
+  background: var(--dark-card); border: 1px solid var(--dark-border);
+  border-radius: 8px; padding: 4px; width: fit-content;
+}
+.team-tab {
+  padding: 10px 28px; border: none; border-radius: 6px; background: none;
+  color: var(--text-secondary); font-family: var(--font-display);
+  font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em;
+  text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+}
+.team-tab.active { background: var(--neon-cyan); color: #000; }
+
+/* Grid */
+.teams-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+/* Card */
+.team-card {
+  background: var(--dark-card); border: 1px solid var(--dark-border);
+  border-radius: 10px; padding: 24px; transition: all 0.2s;
+}
+.team-card:hover       { border-color: #00f5ff33; transform: translateY(-2px); }
+.team-card.team-card-mine { border-color: #00f5ff55; }
+
+.tc-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; margin-bottom: 20px;
+}
+.tc-name    { font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; text-transform: uppercase; margin: 6px 0 2px; }
+.tc-college { font-size: 0.8rem; color: var(--text-muted); }
+.tc-event   { font-size: 0.78rem; color: var(--neon-cyan); margin-top: 4px; }
+
+.tc-role-badges { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; flex-shrink: 0; }
+.role-badge { font-size: 0.72rem; padding: 3px 10px; border-radius: 4px; font-family: var(--font-display); font-weight: 700; white-space: nowrap; }
+.role-badge.captain { background: #ffd70011; color: #ffd700; border: 1px solid #ffd70033; }
+.role-badge.member  { background: #39ff1411; color: var(--neon-green); border: 1px solid #39ff1433; }
+
+/* Members */
+.tc-members-section { margin-bottom: 16px; }
+.tc-members-label {
+  font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;
+  letter-spacing: 0.1em; font-family: var(--font-display); font-weight: 700; margin-bottom: 8px;
+}
+.tc-progress { height: 3px; background: var(--dark-border); border-radius: 2px; margin-bottom: 14px; overflow: hidden; }
+.tc-progress-fill { height: 100%; background: var(--neon-cyan); border-radius: 2px; transition: width 0.4s; }
+
+.tc-members-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.tc-chip {
+  display: flex; align-items: center; gap: 6px; font-size: 0.8rem;
+  background: var(--dark-card2); border: 1px solid var(--dark-border);
+  border-radius: 100px; padding: 4px 10px 4px 4px; transition: border-color 0.2s;
+}
+.tc-chip:hover { border-color: #00f5ff33; }
+.tc-chip-empty { opacity: 0.35; border-style: dashed; }
+.tc-chip-ava {
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+  background: #00f5ff15; color: var(--neon-cyan);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 0.7rem; font-weight: 900;
+}
+.tc-chip-ava-empty { background: var(--dark-border) !important; color: var(--text-muted) !important; }
+
+/* Join code */
+.tc-code-box {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; background: var(--dark-card2);
+  border: 1px dashed #00f5ff33; border-radius: 6px;
+  font-size: 0.82rem; color: var(--text-secondary); margin-top: 4px;
+}
+.tc-code-box strong {
+  font-family: var(--font-display); font-size: 1.1rem;
+  color: var(--neon-cyan); letter-spacing: 0.2em; flex: 1;
+}
+.copy-btn {
+  padding: 3px 12px; background: #00f5ff11; border: 1px solid #00f5ff44;
+  border-radius: 4px; color: var(--neon-cyan); font-family: var(--font-display);
+  font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.copy-btn:hover { background: #00f5ff22; }
+
+/* Modal helpers */
+.modal-sub { color: var(--text-secondary); font-size: 0.88rem; margin-top: 4px; margin-bottom: 28px; }
+.join-code-input {
+  font-family: var(--font-display) !important;
+  font-size: 1.6rem !important; letter-spacing: 0.3em;
+  text-align: center; text-transform: uppercase;
+}
+
+@media (max-width: 960px) { .teams-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) {
+  .teams-grid { grid-template-columns: 1fr; }
+  .teams-header-actions { flex-direction: column; }
+  .team-tabs { width: 100%; }
+  .team-tab  { flex: 1; text-align: center; }
+}
