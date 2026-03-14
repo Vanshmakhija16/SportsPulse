@@ -13,7 +13,8 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173',        // Local dev
   'http://localhost:3000',        // Local dev alternate port
-  'http://localhost:4173',        // Vite preview
+  'http://localhost:4173',
+  'https://aryasportspulse.netlify.app' ,       // Vite preview
   process.env.FRONTEND_URL,      // Netlify production URL
 ].filter(Boolean);               // Remove undefined/null entries
 
